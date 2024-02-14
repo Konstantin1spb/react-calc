@@ -2,17 +2,16 @@ import styles from './app.module.css';
 import { useState } from 'react';
 
 const App = () => {
-	let [operand1, setOperand1] = useState('');
+	let [operand1, setOperand1] = useState('0');
 	let [operator, setOperator] = useState('');
 	let [operand2, setOperand2] = useState('');
 	const NUMS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+	const output = operand1 + ' ' + operator + ' ' + operand2;
 	return (
 		<main className={styles.main}>
 			<div className={styles.calc}>
 				<div className={styles.calcDisplay}>
-					<span>
-						{operand1} {operator} {operand2}
-					</span>
+					<span>{output}</span>
 				</div>
 				<div className={styles.calcControls}>
 					<div className={styles.calcNums}>
@@ -20,8 +19,20 @@ const App = () => {
 							<button
 								onClick={
 									operator
-										? () => setOperand1(operand1 + num)
-										: () => setOperand2(operand2 + num)
+										? () => {
+												if (operand2 === '0') {
+													setOperand2(num);
+												} else {
+													setOperand2(operand2 + num);
+												}
+											}
+										: () => {
+												if (operand1 === '0') {
+													setOperand1(num);
+												} else {
+													setOperand1(operand1 + num);
+												}
+											}
 								}
 							>
 								{num}
@@ -33,7 +44,7 @@ const App = () => {
 						<button onClick={() => setOperator('-')}>-</button>
 						<button
 							onClick={() => {
-								setOperand1('');
+								setOperand1('0');
 								setOperator('');
 								setOperand2('');
 							}}
