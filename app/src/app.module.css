@@ -53,7 +53,7 @@ main {
 }
 
 .calcNums button,
-.calcOperators button {
+.calcPanel button {
 	border: none;
 	background-color: aliceblue;
 	color: #282c34;
@@ -65,14 +65,18 @@ main {
 	cursor: pointer;
 }
 
-.calcOperators {
+.calcPanel {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
-.calcOperators button:last-child {
+.calcPanel button:last-child {
 	background-color: #005a9e;
 	color: aliceblue;
+}
+
+.calcDisplayLight span {
+	color: rgb(61, 61, 255);
 }
